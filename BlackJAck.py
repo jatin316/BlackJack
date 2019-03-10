@@ -80,7 +80,7 @@ class BlackJack:
         currentHandTotal = 0
         for card in handList:
             if('Ace' in card['value']):
-                if(currentHandTotal < 10):
+                if(currentHandTotal < 11):
                     print("Ace value is considered as 11")
                     card['value'] = '11'
                     currentHandTotal +=int(card['value'])
@@ -111,9 +111,24 @@ class BlackJack:
         if( userScore > 21 ):
             print("Player Busted !!!, Dealer Wins!!")
             self.gameOverFlag = True
+        
         elif(computerScore > 21):
             print("Computer Busted !!!, Player Wins ")
             self.gameOverFlag = True
+        
+        elif(userScore == 21):
+            print("Player wins !!")
+            self.gameOverFlag = True
+        
+        elif(computerScore == 21):
+            print("Computer wins !!")
+            self.gameOverFlag = True
+        
+        elif(userScore == computerScore):
+            print("*"*45)
+            print("Equal Deals, no winner.....Its a PUSH!!")
+            self.gameOverFlag = True
+            
         elif(userScore < 21 and self.hitFlag == True):
             print("*"*45)
             print("\nPlayer Options: \n1.Hit \n2.Stand")
@@ -137,6 +152,7 @@ class BlackJack:
             print("Computer Hand :",self.totalHand(self.computerHand))
             self.calculateWinner(self.userHand,self.computerHand)
             print("*"*45)
+        
         elif(userScore < 21 and computerScore < 21 ):
             if(userScore < computerScore):
                 print("*"*45)
@@ -144,10 +160,6 @@ class BlackJack:
                 self.gameOverFlag = True
             elif(computerScore < userScore):
                 print("*"*45)
-                print("user wins .....!!!")
+                print("User Wins .....!!!")
                 self.gameOverFlag = True
-        elif(userScore == computerScore):
-            print("*"*45)
-            print("Equal Deals, no winner.....Its a PUSH!!")
-            self.gameOverFlag = True
         
